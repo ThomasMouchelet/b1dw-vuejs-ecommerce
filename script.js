@@ -1,12 +1,22 @@
+import { ProductCard } from "./components/ProductCard.js"
+
 const { createApp } = Vue
 
 createApp({
+  components: {
+    "product-card": ProductCard
+  },
   data(){
     return {
-      message: 'Hello Vue 3.0 + Vite'
+      itemList: []
     }
   },
   mounted(){
-    console.log('mounted')
+    fetch("products.json")
+      .then(res => res.json())
+      .then(data => {
+        console.log("On mounted : ", data)
+        this.itemList = data
+      })
   }
 }).mount('#app')
