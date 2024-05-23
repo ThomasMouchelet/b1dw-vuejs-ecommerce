@@ -23,11 +23,30 @@
                                 :id="item.id"
                                 :price="item.price"
                                 :src="item.imgSrc"
+                                @hello="parenthellofunction"
+                                @handleaddtocard="handleaddtocard"
                             ></product-card>
                         </div>
                     </div>
                 </div>
-                <div class="col-2"></div>
+                <div class="col-2">
+                    <div>
+                        <h2>Panier</h2>
+                        <div class="cart-card-item" v-for="item in cartItemList">
+                            <h3>{{item.name}}</h3>
+                            <p>{{item.price}}€</p>
+                            <div>
+                                <button @click="decreasenumber(item.id)">-</button>
+                                <span>{{item.number}}</span>
+                                <button>+</button>
+                            </div>
+                            <button @click="deleteitemcart(item.id)">DELETE</button>
+                        </div>
+                        <div>
+                            <h3>Total : {{total}}</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
